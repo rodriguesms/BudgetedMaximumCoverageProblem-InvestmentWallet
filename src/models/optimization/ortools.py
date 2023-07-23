@@ -6,7 +6,7 @@ from models.investment_option import investmentOption
 
 class OR_TOOLS_BMCP:
     """
-    Class for solving this case as a Budgeted Maximum Conjunction Problem using the OR-Tools library.    
+    Class for solving this case as a Budgeted Maximum Coverage Problem using the OR-Tools library.    
     
     Args:
         investments (List[investmentOption]): A list containing objects of the investmentOption class.

@@ -19,4 +19,7 @@ class investmentOption:
         self.risk: int = risk
 
     def __str__(self) -> str:
+        """
+        :return: A string containing the investment option information.
+        """
         return f"Investment Option {self.id}:\nDescription: {self.description}\nCost: {self.cost}\nPayback: {self.payback}\nRisk: {self.risk}\n"

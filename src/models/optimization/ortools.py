@@ -40,7 +40,29 @@ class OR_TOOLS_BMCP:
 
 
     def solve(self, investments: List[investmentOption]):
-        
+        """
+        Solves the investment selection problem using OR-Tools.
+
+        This method optimizes the selection of investment options based on risk categories, budget constraints,
+        and expected payback values. It sets up the MILP model, adds decision variables, objective function,
+        and constraints, then solves the optimization problem using the GLOP solver from OR-Tools.
+
+        Args:
+            investments (List[investmentOption]): A list of investmentOption objects representing the available investment options.
+
+        Returns:
+            None: The method updates the decision_binaries attribute to store the solution (0 or 1) for each investment option.
+                The selected_investments attribute will contain the investmentOption objects corresponding to the selected options.
+
+        Note:
+            The investmentOption class must have the following attributes:
+                - cost (int): The cost of the investment option (R$).
+                - payback (int): The expected payback of the investment option (R$).
+                - risk (int): An integer representing the risk category of the investment option.
+                            0 for low risk, 1 for medium risk, and 2 for high risk.
+        """
+
+
         if not self.solver:
             return
 
@@ -82,7 +104,7 @@ class OR_TOOLS_BMCP:
             print('Solution:')
             for i, investment in enumerate(investments):
                 if decision_binaries[i].solution_value() > 0.99:
-                    print(f"Investment option {i}: Cost = {investment.cost}, Payback = {investment.payback}")
+                    print(f"Investment option {i}: Cost = {investment.cost}, Payback = {investment.payback}, Risk = {investment.risk}")
             print(f"Total payback: {self.solver.Objective().Value()}")                   
         else:
             print('This case doesnt have a optimal solution.')
